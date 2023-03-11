@@ -4,14 +4,14 @@ import ListItem from './ListItem';
 
 export interface Item {
   id: number
-  text: string
+  content: any
 }
 
 export interface ContainerState {
   cards: Item[]
 }
 
-const OrderableList = (props:any) => {
+const DraggableList = (props:any) => {
 
   const [ListItems, setListItems] = useState(props.items);
   
@@ -29,13 +29,12 @@ const OrderableList = (props:any) => {
   
   const renderItem = useCallback(
     (card: Item, index: number) => {
-      console.log(card)
       return (
         <ListItem
           key={card.id}
           index={index}
           id={card.id}
-          text={card.text}
+          content={card.content}
           moveItem={moveItem}
         />
       )
@@ -50,7 +49,7 @@ const OrderableList = (props:any) => {
         ListItems.map((card:any, i:any) => {
           var c:Item = {
             id: card.id,
-            text: card.entities.rider.displayName
+            content: card
           }
           return renderItem(c, i)
         })
@@ -60,4 +59,4 @@ const OrderableList = (props:any) => {
   
 }
 
-export default OrderableList;
+export default DraggableList;

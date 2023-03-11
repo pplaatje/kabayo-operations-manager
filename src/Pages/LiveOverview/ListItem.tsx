@@ -2,20 +2,15 @@
 import type { Identifier, XYCoord } from 'dnd-core'
 import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
+import { Col, Row } from 'reactstrap'
 
 import { ItemTypes } from './ItemTypes'
+import './css/style.css'
 
-const style = {
-  border: '1px dashed gray',
-  padding: '0.5rem 1rem',
-  marginBottom: '.5rem',
-  backgroundColor: 'white',
-  cursor: 'move',
-}
 
 export interface CardProps {
   id: any
-  text: string
+  content: any
   index: number
   moveItem: (dragIndex: number, hoverIndex: number) => void
 }
@@ -27,7 +22,7 @@ interface DragItem {
 }
 
 
-const ListItem = ({ id, text, index, moveItem }:CardProps) => {
+const ListItem = ({ id, content, index, moveItem }:CardProps) => {
 
   const ref = useRef<HTMLDivElement>(null)
   const [{ handlerId }, drop] = useDrop<
@@ -105,8 +100,13 @@ const ListItem = ({ id, text, index, moveItem }:CardProps) => {
   drag(drop(ref))
 
   return (
-    <div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
-      {text}
+    <div ref={ref} className="listItemRow" style={{ opacity }} data-handler-id={handlerId}>
+      <Row>
+        <Col xs="1">{index}</Col>
+        <Col>
+          {content}
+        </Col>
+      </Row>
     </div>
   )
 }

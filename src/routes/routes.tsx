@@ -4,17 +4,11 @@ import DefaultLayout from '../layouts/private/DefaultLayout'
 import LiveOverview from '../Pages/LiveOverview'
 
 
-const authProtectedRoutes: route[] = [
+const Routes: route[] = [
   // events
   { path: "/", page: DefaultLayout, title: "Home", protectedRoute: false, children:[
     { path: "/live-overview", page: LiveOverview, title: "Live Overview", protectedRoute: false }
   ]}
 ];
 
-const publicRoutes: route[] = [
-  { path: "/", page: DefaultLayout, title: "Home", protectedRoute: false, children:[
-    { path: "/live-overview", page: LiveOverview, title: "Live Overview", protectedRoute: false }
-  ]}
-];
-
-export { publicRoutes, authProtectedRoutes }
+export { Routes }

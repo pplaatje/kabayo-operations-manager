@@ -3,7 +3,7 @@ import {
 } from "react-router-dom";
 
 import { route } from '../types/routes'
-import { authProtectedRoutes, publicRoutes } from './routes'
+import { Routes } from './routes'
 import ValidateRoute from "./ValidateRoute";
 
 const CreateRoutes:any = (routes: route[]) => {
@@ -23,8 +23,8 @@ const CreateRoutes:any = (routes: route[]) => {
 
 }
 
-console.log(CreateRoutes(authProtectedRoutes))
+console.log(CreateRoutes(Routes))
  
-const R = createBrowserRouter(CreateRoutes(authProtectedRoutes));
+const R = createBrowserRouter(CreateRoutes(Routes));
 
 export default R

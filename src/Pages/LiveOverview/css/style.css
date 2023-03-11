@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.listItemRow {
+  font-family: 'Lato';
+  border: 1px dashed gray;
+  padding: 0.5rem 1rem;
+  background-color: 'white';
+  cursor: move;
+  width: 100vw;
+  border-collapse: collapse;
+}
