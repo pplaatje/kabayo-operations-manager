@@ -11,8 +11,6 @@ const LiveOverviewRow = (props:any) => {
   let status = "";
   const [searchParams, setSearchParams] = useSearchParams();
   
-  console.log(searchParams);
-  
   if(combinationStatus === "Active"){
     combinationStatusColor = "danger";
     status = "Active rider";

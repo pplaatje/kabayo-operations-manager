@@ -3,7 +3,6 @@ import { useCallback, useState } from "react";
 import ListItem from './ListItem';
 
 export interface Item {
-  id: number
   content: any
 }
 
@@ -16,6 +15,8 @@ const DraggableList = (props:any) => {
   const [ListItems, setListItems] = useState(props.items);
   
   const moveItem = useCallback((dragIndex: number, hoverIndex: number) => {
+    console.log("DragIndex", dragIndex);
+    console.log("HoverIndex", hoverIndex);
     setListItems((prevCards: Item[]) =>
       update(prevCards, {
         $splice: [
@@ -28,27 +29,25 @@ const DraggableList = (props:any) => {
 
   
   const renderItem = useCallback(
-    (card: Item, index: number) => {
-      return (
-        <ListItem
-          key={card.id}
-          index={index}
-          id={card.id}
-          content={card.content}
-          moveItem={moveItem}
-        />
-      )
+    (card: any, index: number) => {
+        return (
+          <ListItem
+            key={card.id}
+            index={index}
+            id={card.id}
+            content={card.content}
+            moveItem={moveItem}
+          />
+        )
     },
     [],
   )
   
   return (
-    
       <div>
       {
-        ListItems.map((listItem:any, i:any) => {
+        ListItems && ListItems.map((listItem:any, i:number) => {
           var c:Item = {
-            id: i,
             content: listItem
           }
           return renderItem(c, i)

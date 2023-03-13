@@ -86,11 +86,87 @@ const riderList = [
     "status": "Inrijden",
     "entities": {
       "rider": {
-        "displayName": "Hilda Boersma",
+        "displayName": "Finn Plaatje",
         "displayNationality": "NL"
       },
       "horse": {
         "displayName": "Gironne Z",
+        "gender": "mare",
+        "age": "6",
+        "classification": "P",
+        "pedigree": {
+          "father": {
+            "displayName": "Unknown"
+          },
+          "mother":  {
+            "displayName": "Unknown"
+          }
+        }
+      }
+    }
+  }
+]
+
+const riderList2 = [
+  {
+    "id": "11",
+    "status": "Active",
+    "entities": {
+      "rider": {
+        "displayName": "Herman",
+        "displayNationality": "NL"
+      },
+      "horse": {
+        "displayName": "Grolsch",
+        "gender": "mare",
+        "age": "14",
+        "classification": "D",
+        "pedigree": {
+          "father": {
+            "displayName": "Unknown"
+          },
+          "mother":  {
+            "displayName": "Unknown"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "12",
+    "status": "In ring",
+    "entities": {
+      "rider": {
+        "displayName": "Tineke Hoekstra",
+        "displayNationality": "NL"
+      },
+      "horse": {
+        "displayName": "Eye",
+        "gender": "mare",
+        "age": "11",
+        "classification": "B",
+        "pedigree": {
+          "father": {
+            "displayName": "Unknown"
+          },
+          "mother":  {
+            "displayName": "Unknown"
+          }
+        }
+      }
+    }
+  }
+,
+  {
+    "id": "14",
+    "status": "Inrijden",
+    "entities": {
+      "rider": {
+        "displayName": "Hilda Boersma",
+        "displayNationality": "NL"
+      },
+      "horse": {
+        "displayName": "Meggy",
         "gender": "mare",
         "age": "6",
         "classification": "P",
@@ -128,7 +204,7 @@ const programList = [
     },{
       id: 4,
       type: "list",
-      content: riderList,
+      content: riderList2,
       height: 0.7
     },{
       id: 5,
@@ -136,32 +212,6 @@ const programList = [
       content: "Prijsuitreiking"      
     }],
     "status": "active"
-  },
-  {
-    "id": "2",
-    "title": "Pony's springen 0,80m",
-    "sections": [{
-      id: 1,
-      type: "list",
-      content: riderList,
-      height: 0.8
-    }],
-    "status": "next"      
-  },
-  {
-    "id": "3",
-    "title": "Pony's springen 0,90m",
-    "sections": [{
-      id: 1,
-      type: "list",
-      content: riderList,
-      height: 0.9
-    },{
-      id: 2,
-      type: "text",
-      content: "Prijsuitreiking"
-    }],
-    "status": "upcoming"
   }
 ];
 
@@ -175,7 +225,7 @@ const LiveOverview = () => {
         if(programItem.status === "active" && riderList.status === "active"){
           combinationStatus = combination.status;
         }
-        return (
+        const content = (
           <LiveOverviewRow
             id = {id}
             riderName = {combination.entities.rider.displayName}
@@ -187,6 +237,7 @@ const LiveOverview = () => {
             combinationStatus={combinationStatus}
           />
         )
+        return content;
       })
       return rl;
     }
@@ -202,24 +253,27 @@ const LiveOverview = () => {
       </div>
     {
       programList.map((programItem) => {
+        // we need an index per program list
+        let iList: any[] = [];
+        programItem.sections.map((section:any) => {
+          
+          switch(section.type){
+            case "list":
+              const riderList = itemList(section, programItem);
+              iList = iList.concat(riderList);
+              return;
+            case "text":
+              iList.push(<TextOverviewRow text={ section.content } key={Math.random()} className="textItemRow" />);
+              return;
+          }
+        });
+        console.log(iList);
         return (
           <div key={`${programItem.id}`} className="programItem">
             <h2>{ programItem.title }</h2>
-            { 
-            programItem.sections.map((section:any) => {
-              switch(section.type){
-              case "list":
-                return (
-                  <DndProvider backend={HTML5Backend} key={`dndProvider`}>
-                    <DraggableList items={itemList(section, programItem)} />
-                  </DndProvider>
-                )
-              case "text":
-                return (
-                  <TextOverviewRow text={ section.content } className="textItemRow" />
-                )
-              }
-          })}
+            <DndProvider backend={HTML5Backend} key={`dndProvider`}>
+              <DraggableList items={iList} key={`${programItem.id}`} />
+            </DndProvider>
           </div>
         )
       })

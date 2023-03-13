@@ -1,4 +1,4 @@
-import { Badge, Col, Row } from "reactstrap";
+import { Col, Row } from "reactstrap";
 
 
 const TextOverviewRow = (props:any) => {
@@ -9,8 +9,7 @@ const TextOverviewRow = (props:any) => {
     <Row xs="1" className={className}>
       <Col>{text}</Col>
     </Row>
-  )
-  
+  ) 
 }
 
 export default TextOverviewRow;
