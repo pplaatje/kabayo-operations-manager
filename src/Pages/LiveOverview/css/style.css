@@ -1,11 +1,60 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+h1 {
+	font-weight: bolder;
+}
+
+h2 {
+  width: 100vw;
+  padding: 1rem;
+  font-weight: bolder;
+  color: #010536;
+}
+
+.page {
+	padding-top: 110px;
+}
+
+.header {
+  background-color: #010536;
+  color: #fff;	
+  padding: 1rem;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  height: 110px;
+}
+
+.programItem {
+	border-top: 4px solid #010536;
+	margin-bottom: 4em;
+}
 
 .listItemRow {
-  font-family: 'Lato';
-  border: 1px dashed gray;
+  font-family: 'Poppins';
+  border-top: 1px dashed gray;
   padding: 0.5rem 1rem;
   background-color: 'white';
   cursor: move;
   width: 100vw;
   border-collapse: collapse;
+}
+
+.listItemRow .col:nth-child(2) {
+  font-weight: bolder;
+}
+
+.textItemRow {
+  font-family: 'Poppins';
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  margin-top: 1em;
+  background-color: 'white';
+  width: 100vw;
+  text-align: center;
+}
+
+.statusBadge {
+	margin-right: 0.2em;
 }

@@ -46,10 +46,10 @@ const DraggableList = (props:any) => {
     
       <div>
       {
-        ListItems.map((card:any, i:any) => {
+        ListItems.map((listItem:any, i:any) => {
           var c:Item = {
-            id: card.id,
-            content: card
+            id: i,
+            content: listItem
           }
           return renderItem(c, i)
         })

@@ -21,7 +21,6 @@ interface DragItem {
   type: string
 }
 
-
 const ListItem = ({ id, content, index, moveItem }:CardProps) => {
 
   const ref = useRef<HTMLDivElement>(null)
@@ -102,7 +101,6 @@ const ListItem = ({ id, content, index, moveItem }:CardProps) => {
   return (
     <div ref={ref} className="listItemRow" style={{ opacity }} data-handler-id={handlerId}>
       <Row>
-        <Col xs="1">{index}</Col>
         <Col>
           {content}
         </Col>
